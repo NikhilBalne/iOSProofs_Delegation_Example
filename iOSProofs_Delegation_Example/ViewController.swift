@@ -15,6 +15,16 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func buttonTapped(_ sender: Any) {
+        let ccvc = self.storyboard?.instantiateViewController(identifier: "ColorChangeViewController") as! ColorChangeViewController
+        ccvc.colorChangeDelegate = self
+        self.navigationController?.pushViewController(ccvc, animated: true)
+    }
+    
 }
 
+extension ViewController : ColorChangeDelegate {
+    func backgroundColorChange(color: UIColor) {
+        self.view.backgroundColor = color
+    }
+}
